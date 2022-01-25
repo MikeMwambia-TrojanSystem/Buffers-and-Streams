@@ -1,0 +1,9 @@
+'use strict'
+const assert = require('assert')
+
+//Create a safe buffer allocation
+const buffer = Buffer.alloc(1024);
+
+for (const byte of buffer) assert.equal(byte, buffer[0])
+console.log('passed!')
+
