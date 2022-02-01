@@ -1,3 +1,6 @@
+THis repo covers buffers and streams in node js
+See streams branch for example code and explanation
+
 What is a buffer 
 
 This a section in memory that holds binary data temporarily untill a computer is ready to accept it and process it.
