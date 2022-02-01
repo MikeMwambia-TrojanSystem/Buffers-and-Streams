@@ -1,0 +1,52 @@
+The Node core stream module exposes six constructors for creating streams : - 
+-Stream 
+-Readable 
+-Writable 
+-Duplex 
+-Transform 
+-PassThrough
+Other common Node core APIs such as process , net , http and fs , 
+child_process expose streams and extend these constructors.
+
+The events emitted by the above constructos include :- 
+data
+end
+finish
+close 
+error 
+
+There are two stream modes :
+Binary streams 
+Object streams 
+The default mode is binary.Binary mode streams only read or write Buffer instances.
+In object mode streams can read or write javascipt object and primitives except null.
+In node most object mode streams deal with strings.
+
+Duplex 
+Transform
+PassThrough
+All the above stream constructors have both readable and writable  interfaces
+
+
+data and end events are emitted by readable streams while the finish is emmited by writable streams
+where nothing is left to write
+The data and end events are common to al streams.
+The close event is emmited if a stream is destroyed 
+
+Since it's so small only one data event would be emitted, but readable streams have a default highWaterMark option of 16kb. 
+That means 16kb of data can be read before emitting a data event. 
+So in the case of a file read stream, 64kb file would emit four data events. 
+When there is no more data for a readable stream to read, an end event is emitted.
+
+Pipe method : - 
+Pipe method takes a buffer chunk from a stream and moves it to another destination 
+
+src.pipe(dest) ---- Move from source to destination 
+
+You can chain mutiple pipes together 
+
+src.pipe(dest1).pipe(dest2).pipe(dest3).....n 
+//The above is not advised since you can't catch an error use pipeline utility function instead
+
+pipeline(src,dest1,dest2,dest3)
+
